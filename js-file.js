@@ -49,43 +49,26 @@ btns.forEach((button) => {
   });
 
 const clearButton = document.getElementById("clear");
-
 clearButton.addEventListener("click", () => {
     const screen = document.getElementById("screen");
     screen.textContent = "0";
     calculatorState = "default"; 
 })
 
-const addButton = document.getElementById("add");
-addButton.addEventListener("click", function(e) {
-    const screen = document.getElementById("screen");
-    let number = parseFloat(screen.textContent);
-    let newDisplay = e.target.innerText;
-    screen.textContent = newDisplay;
-    console.log(number)
-})
-const substractButton = document.getElementById("subtract");
-substractButton.addEventListener("click", function(e) {
-    const screen = document.getElementById("screen");
-    let number = parseFloat(screen.textContent);
-    let newDisplay = e.target.innerText;
-    screen.textContent = newDisplay;
-})
-const multiplyButton = document.getElementById("multiply");
-multiplyButton.addEventListener("click", function(e) {
-    const screen = document.getElementById("screen");
-    let number = parseFloat(screen.textContent);
-    let newDisplay = e.target.innerText;
-    screen.textContent = newDisplay;
-    console.log(number)
-})
-const divideButton = document.getElementById("divide");
-divideButton.addEventListener("click", function(e) {
-    const screen = document.getElementById("screen");
-    let number = parseFloat(screen.textContent);
-    let newDisplay = e.target.innerText;
-    screen.textContent = newDisplay;
-    console.log(number)
-})
+const operandButtons = document.querySelectorAll(".operand");
+operandButtons.forEach((button) => {
+    button.addEventListener("click", function(e) {
+        const screen = document.getElementById("screen");
+        let number = parseFloat(screen.textContent);
+        let newDisplay = e.target.innerText;
+        screen.textContent = newDisplay;
+        console.log(number)
+    });
+});
+
+const equal = document.getElementById("equals");
+
+equal.addEventListener("click")
+
 
 
