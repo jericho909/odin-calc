@@ -1,3 +1,14 @@
 button {
     padding: 36px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+}
+
+#screen {
+    border-style: solid;
+    height: 40px;
+    width: 310px;
+    text-align: end;
+    border-radius: 6px;
 }
