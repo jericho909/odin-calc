@@ -1,74 +1,100 @@
 let calculatorState = "default";
+let number;
+let operation;
+let currentNumber;
 let operator = {
     add: function(a,b){
-        return a+b
+        return a + b;
     },
-    substract: function(a,b){
-        return a - b
+    subtract: function(a,b){
+        return a - b;
     },
     divide: function(a,b){
         if (b !== 0) {
-            return a / b
+            return a / b;
         } else {
-            const screen = document.getElementById("screen");
-            screen.textContent("You cannot divide by zero.");
+            const results = document.getElementById("results");
+            results.textContent = "You cannot divide by zero.";
+            return NaN;
         }
     },
     multiply: function(a,b){
-        return a * b
+        return a * b;
     },
 };
 
-function operate(){
-    const firstNumber = document.getElementById("screen");
+function operate(number1, number2, operation) {
+    switch (operation) {
+        case "+":
+            return operator.add(number1, number2);
+        case "-":
+            return operator.subtract(number1, number2);
+        case "/":
+            return number2 !== 0 ? operator.divide(number1, number2) : null; // Check for division by zero
+        case "*":
+            return operator.multiply(number1, number2);
+        default:
+            return null;
+    }
 }
 
+
 function displayNumber(num) {
-    const screen = document.getElementById("screen");
+    const results = document.getElementById("results");
     if (calculatorState === "operandEntered") {
-      screen.textContent = num;
-      calculatorState = "numberEntered";
-    } else if (screen.textContent === "0" || screen.textContent === "NaN") {
-      screen.textContent = num;
-      calculatorState = "numberEntered";
+        results.textContent = num;
+        calculatorState = "numberEntered";
+    } else if (results.textContent === "0" || results.textContent === "NaN") {
+        results.textContent = num;
+        calculatorState = "numberEntered";
     } else {
-      screen.textContent += num;
+        results.textContent += num;
     }
-  }
-  
+}
+
 const btns = document.querySelectorAll("#keypad button");
-  
+
 btns.forEach((button) => {
     button.addEventListener("click", function (e) {
-      const displayNum = e.target.innerText;
-      displayNumber(displayNum);
-      if (e.target.classList.contains("operand")) {
-        calculatorState = "operandEntered";
-      }
-    });
-  });
-
-const clearButton = document.getElementById("clear");
-clearButton.addEventListener("click", () => {
-    const screen = document.getElementById("screen");
-    screen.textContent = "0";
-    calculatorState = "default"; 
-})
-
-const operandButtons = document.querySelectorAll(".operand");
-operandButtons.forEach((button) => {
-    button.addEventListener("click", function(e) {
-        const screen = document.getElementById("screen");
-        let number = parseFloat(screen.textContent);
-        let newDisplay = e.target.innerText;
-        screen.textContent = newDisplay;
-        console.log(number)
+        const displayNum = e.target.innerText;
+        displayNumber(displayNum);
     });
 });
 
+const clearButton = document.getElementById("allClear");
+clearButton.addEventListener("click", () => {
+    const results = document.getElementById("results");
+    const upperScreen = document.getElementById("screen");
+    results.textContent = "0";
+    upperScreen.textContent = "0";
+    calculatorState = "default";
+});
+
+const operandButtons = document.querySelectorAll(".operand");
+operandButtons.forEach((button) => {
+  button.addEventListener("click", function(e) {
+    console.log(calculatorState)
+    operation = e.target.innerText;
+    let numberOnScreen = document.getElementById("results");
+    if (currentNumber === undefined) {
+      currentNumber = parseInt(numberOnScreen.innerText);
+      numberOnScreen.textContent = operation;
+    } else {
+      let trailingNumber = parseInt(numberOnScreen.innerText);
+      console.log(currentNumber)
+      console.log(trailingNumber)
+      console.log(operation)
+      currentNumber = operate(currentNumber, trailingNumber, operation);
+      console.log(currentNumber)
+      let upperScreen = document.getElementById("screen");
+      upperScreen.textContent = currentNumber;
+      numberOnScreen.textContent = operation;
+    }
+    
+    calculatorState = "operandEntered";
+    console.log(calculatorState)
+  })
+})
+
 const equal = document.getElementById("equals");
-
-equal.addEventListener("click")
-
-
 
