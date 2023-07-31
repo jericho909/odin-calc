@@ -1,8 +1,11 @@
 let calculatorState = "default";
 let number;
 let operation;
-let currentNumber;
-let trailingNumber;
+let firstOperand;
+let secondOperand;
+const results = document.getElementById("results");
+const upperScreen = document.getElementById("screen");
+
 let operator = {
     add: function(a,b){
         return a + b;
@@ -12,10 +15,9 @@ let operator = {
     },
     divide: function(a,b){
         if (b !== 0) {
-            return a / b;
+            return b / a;
         } else {
-            const results = document.getElementById("results");
-            results.textContent = "You cannot divide by zero.";
+            alert("You cannot divide by zero.")
             return NaN;
         }
     },
@@ -54,7 +56,6 @@ function displayNumber(num) {
 }
 
 const btns = document.querySelectorAll("#keypad button");
-
 btns.forEach((button) => {
     button.addEventListener("click", function (e) {
         const displayNum = e.target.innerText;
@@ -64,40 +65,48 @@ btns.forEach((button) => {
 
 const clearButton = document.getElementById("allClear");
 clearButton.addEventListener("click", () => {
-    const results = document.getElementById("results");
-    const upperScreen = document.getElementById("screen");
     results.textContent = "0";
     upperScreen.textContent = "0";
     calculatorState = "default";
-    currentNumber = 0;
-    trailingNumber = 0;
+    firstOperand = 0;
+    secondOperand = 0;
 });
 
 const operandButtons = document.querySelectorAll(".operand");
+
 operandButtons.forEach((button) => {
-  button.addEventListener("click", function(e) {
-    console.log(calculatorState)
-    operation = e.target.innerText;
-    let numberOnScreen = document.getElementById("results");
-    if (currentNumber === undefined) {
-      currentNumber = parseInt(numberOnScreen.innerText);
-      numberOnScreen.textContent = operation;
-    } else {
-      trailingNumber = parseInt(numberOnScreen.innerText);
-      console.log(currentNumber)
-      console.log(trailingNumber)
-      console.log(operation)
-      currentNumber = operate(currentNumber, trailingNumber, operation);
-      console.log(currentNumber)
-      let upperScreen = document.getElementById("screen");
-      upperScreen.textContent = currentNumber;
-      numberOnScreen.textContent = operation;
-    }
-    
-    calculatorState = "operandEntered";
-    console.log(calculatorState)
-  })
+    button.addEventListener("click", function(e) {
+        upperScreen.textContent = results.textContent;
+        results.textContent = "0";
+        operation = e.target.innerText;
+        calculatorState ="operandEntered";
+    })
 })
 
-const equal = document.getElementById("equals");
 
+const equalButton = document.querySelector("#equals");
+equalButton.addEventListener("click", () => {
+    secondOperand = parseInt(upperScreen.textContent);
+    console.log(secondOperand)
+    firstOperand = parseInt(results.textContent);
+    console.log(firstOperand)
+    let finalResult = operate(firstOperand, secondOperand, operation);
+    console.log(finalResult)
+    results.textContent = finalResult;
+})
+
+const deleteButton = document.querySelector("#delete");
+deleteButton.addEventListener("click", () =>{
+    
+    if (results.textContent === "0") {
+        results.textContent = "0";
+    } else {let deleted = parseInt(results.textContent).toString();
+    deleted = deleted.slice(0, -1);
+    console.log(deleted)
+    results.textContent = deleted;};
+    
+
+    if (results.textContent === "" || results.textContent === NaN || results.textContent === "0") {
+        results.textContent = 0;
+    };
+})

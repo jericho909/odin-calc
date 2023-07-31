@@ -27,6 +27,7 @@ button {
     flex-direction: column;
     margin-bottom: 16px;
     padding: 12px;
+    background-color: grey;
 }
 
 #screen,
@@ -35,7 +36,7 @@ button {
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background-color: grey;
+    
 }
 
 #firstRow, #secondRow, #thirdRow, #fourthRow, #fifthRow {
@@ -45,6 +46,12 @@ button {
 }
 
 .numbers, .operand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.equals {
     display: flex;
     justify-content: center;
     align-items: center;
