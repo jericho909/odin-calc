@@ -2,6 +2,7 @@ let calculatorState = "default";
 let number;
 let operation;
 let currentNumber;
+let trailingNumber;
 let operator = {
     add: function(a,b){
         return a + b;
@@ -68,6 +69,8 @@ clearButton.addEventListener("click", () => {
     results.textContent = "0";
     upperScreen.textContent = "0";
     calculatorState = "default";
+    currentNumber = 0;
+    trailingNumber = 0;
 });
 
 const operandButtons = document.querySelectorAll(".operand");
@@ -80,7 +83,7 @@ operandButtons.forEach((button) => {
       currentNumber = parseInt(numberOnScreen.innerText);
       numberOnScreen.textContent = operation;
     } else {
-      let trailingNumber = parseInt(numberOnScreen.innerText);
+      trailingNumber = parseInt(numberOnScreen.innerText);
       console.log(currentNumber)
       console.log(trailingNumber)
       console.log(operation)
