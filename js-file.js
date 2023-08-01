@@ -125,43 +125,41 @@ class Calculator {
     calculator.updateDisplay()
   })
 
-// ... Your existing Calculator class and other code ...
 
-// Add event listeners for keyboard input
 document.addEventListener('keydown', (event) => {
-    const key = event.key.toLowerCase(); // Convert key to lowercase
+    const key = event.key.toLowerCase(); 
   
-    // Numbers and decimal point
+    
     if (!isNaN(key) || key === '.') {
       calculator.appendNumber(key);
       calculator.updateDisplay();
     }
   
-    // Operations
+    
     if (key === '+' || key === '-' || key === '*' || key === 'x') {
       calculator.chooseOperation(key);
       calculator.updateDisplay();
     }
   
-    // Divide operation (using '/' key)
+    
     if (key === '/') {
-      calculator.chooseOperation('÷'); // Use '÷' instead of '/'
+      calculator.chooseOperation('÷'); 
       calculator.updateDisplay();
     }
   
-    // Equals sign
+    
     if (key === 'enter' || key === 'return' || key === '=') {
       calculator.compute();
       calculator.updateDisplay();
     }
   
-    // All Clear (AC)
+    
     if (key === 'escape' || key === 'ac') {
       calculator.clear();
       calculator.updateDisplay();
     }
   
-    // Delete (C)
+    
     if (key === 'backspace' || key === 'c') {
       calculator.delete();
       calculator.updateDisplay();
