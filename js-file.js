@@ -58,6 +58,10 @@ function displayNumber(num) {
 const btns = document.querySelectorAll("#keypad button");
 btns.forEach((button) => {
     button.addEventListener("click", function (e) {
+        if (calculatorState === "inOperation"){
+            results.innerText = "0";
+            calculatorState = "default";
+        }
         const displayNum = e.target.innerText;
         displayNumber(displayNum);
     });
@@ -70,16 +74,25 @@ clearButton.addEventListener("click", () => {
     calculatorState = "default";
     firstOperand = 0;
     secondOperand = 0;
+    operation = undefined;
 });
 
 const operandButtons = document.querySelectorAll(".operand");
 
 operandButtons.forEach((button) => {
     button.addEventListener("click", function(e) {
-        upperScreen.textContent = results.textContent;
-        results.textContent = "0";
-        operation = e.target.innerText;
-        calculatorState ="operandEntered";
+        if (operation === undefined){
+            upperScreen.textContent = results.textContent;
+            operation = e.target.innerText;
+            results.textContent = operation;
+            calculatorState ="operandEntered"; 
+        } else {
+            secondOperand = parseInt(upperScreen.textContent);
+            firstOperand = parseInt(results.textContent);
+            let finalResult = operate(firstOperand, secondOperand, operation);
+            results.textContent = finalResult;
+        }
+        
     })
 })
 
@@ -87,12 +100,13 @@ operandButtons.forEach((button) => {
 const equalButton = document.querySelector("#equals");
 equalButton.addEventListener("click", () => {
     secondOperand = parseInt(upperScreen.textContent);
-    console.log(secondOperand)
     firstOperand = parseInt(results.textContent);
-    console.log(firstOperand)
     let finalResult = operate(firstOperand, secondOperand, operation);
-    console.log(finalResult)
     results.textContent = finalResult;
+    let currentScreen = upperScreen.textContent;
+    let updatedScreen = currentScreen + finalResult;
+    upperScreen.textContent = updatedScreen;
+    calculatorState = "inOperation";
 })
 
 const deleteButton = document.querySelector("#delete");
