@@ -58,7 +58,9 @@ footer {
     font-size: 0.8rem;
 }
 
-
+a:link {
+    color: white;
+}
 
 a:visited {
     color: white;
