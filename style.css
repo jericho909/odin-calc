@@ -1,58 +1,75 @@
-button {
-    padding: 36px;
-    width: 60px;
-    height: 60px;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, #ff7300, #e5ff00);
+}
+
+.calculator-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5,100px);
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator-grid > button:hover {
+    background-color: rgba(255, 255, 255, .9);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+footer {
     text-align: center;
-    font-weight: 600;
-    font-size: medium;
-}
-
-#case {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 24px;
-    height: 640px;
-    width: 400px;
-    border-style: solid;
-}
-
-#upperPart {
-    border-style: solid;
-    width: 310px;
-    text-align: end;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-    padding: 12px;
-    background-color: grey;
-}
-
-#screen,
-#results {
-    height: 20px;
-    font-size: 16px;
-    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     color: white;
-    
+    font-size: 0.8rem;
 }
 
-#firstRow, #secondRow, #thirdRow, #fourthRow, #fifthRow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+a:visited {
+    color: white;
 }
 
-.numbers, .operand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
 }
 
-.equals {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.output .current-operand {
+    color: white;
+    font-size: 2.5rem;
 }

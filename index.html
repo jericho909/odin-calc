@@ -4,47 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <script src="js-file.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <script src="js-file.js" defer></script>
 </head>
 <body>
-    <div id="case">
-        <div id="upperPart" >
-            <p id="screen">0</p>
-            <p id="results">0</p>
+    <div class="calculator-grid">
+        <div class="output">
+            <div data-previous-operand class="previous-operand"></div>
+            <div data-current-operand class="current-operand"></div>
         </div>
-        <div id="keypad">
-            <div id="firstRow">
-                <button class="numbers" id="one">1</button>
-                <button class="numbers" id="two">2</button>
-                <button class="numbers" id="three">3</button>
-                <button class="operand" id="add">+</button>
-            </div>
-            <div id="secondRow">
-                <button class="numbers" id="four">4</button>
-                <button class="numbers" id="five">5</button>
-                <button class="numbers" id="six">6</button>
-                <button class="operand" id="subtract">-</button>
-            </div>
-            <div id="thirdRow">
-                <button class="numbers" id="seven">7</button>
-                <button class="numbers" id="eight">8</button>
-                <button class="numbers" id="nine">9</button>
-                <button class="operand" id="multiply">*</button>
-            </div>
-            <div id="fourthRow">
-                <button class="numbers" id="asterisk"></button>
-                <button class="numbers" id="zero">0</button>
-                <button class="numbers" id="delete">C</button>
-                <button class="operand" id="divide">/</button>
-            </div>
-            <div id="fifthRow">
-                <button class="numbers" id="allClear">AC</button>
-                <button id="nan">NaN</button>
-                <button id="nan">NaN</button>
-                <button class="equals" id="equals">=</button>
-            </div>
-        </div>
+        <button data-all-clear class="span-two">AC</button>
+        <button data-delete>C</button>
+        <button data-operation>÷</button>
+        <button data-number>1</button>
+        <button data-number>2</button>
+        <button data-number>3</button>
+        <button data-operation>*</button>
+        <button data-number>4</button>
+        <button data-number>5</button>
+        <button data-number>6</button>
+        <button data-operation>+</button>
+        <button data-number>7</button>
+        <button data-number>8</button>
+        <button data-number>9</button>
+        <button data-operation>-</button>
+        <button data-number>.</button>
+        <button data-number>0</button>
+        <button data-equals class="span-two">=</button>
     </div>
+    <footer>
+        <p> Made by  <a href="https://github.com/jericho909" target="_blank" rel="noopener noreferrer">jericho909</a></p>
+        <p> Donate to the <a href="https://opencollective.com/theodinproject/donate" target="_blank" rel="noopener noreferrer">The Odin Project</a>!</p>
+    </footer>
+
+    
 </body>
 </html>
